@@ -1,0 +1,9 @@
+<select class="form-select can_be_disabled" style="width: 200px;" id="id_month_select">
+    {% for month_item in months %}
+        {% if month_item.month_number == month_selected.month_number %}
+            <option value="{{ month_item.month_number }}" selected>{{ month_item.month }}</option>
+        {% else %}
+            <option value="{{ month_item.month_number }}">{{ month_item.month }}</option>
+        {% endif %}
+    {% endfor %}
+</select><br>

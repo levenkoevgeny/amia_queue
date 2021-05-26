@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load url_replace %}
+{% block title %}
+    <title>Панель управления</title>
+{% endblock %}
+{% block own_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% include 'dashboard/nav.html' %}
+
+    <div class="container">
+        <br>
+        <br>
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Ваша элетронная очередь</h5>
+                <p class="card-text">В таблице размещен список элетронной очереди. При необходимости поиска используйте
+                    форму</p>
+                {% if appointment_list %}
+                    <a href="{% url 'dashboard:queue_create' %}" class="btn btn-danger">
+                        Пересоздать очередь (с удалением всех записей!!!)</a>
+                {% else %}
+                    <a href="{% url 'dashboard:queue_create' %}" class="btn btn-primary">
+                        Создать новую очередь
+                    </a>
+                {% endif %}
+                </a>
+            </div>
+        </div>
+        <br>
+
+
+        <form action="{% url 'dashboard:main' %}" method="get">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Фамилия</label>
+                        {% render_field filter.form.last_name class+="form-control" %}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Дата записи</label>
+                        {% render_field filter.form.date_appointment class+="form-control" %}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Забронировано</label>
+                        {% render_field filter.form.is_booked class+="form-control" %}
+                        {#                        {% render_field filter['o'].field.last_name class+="form-control" %}#}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Поиск</button>
+            <a href="{% url 'dashboard:main' %}" class="btn btn-success">Сбросить фильтр</a>
+        </form>
+    </div>
+    <br>
+    {% if appointment_list %}
+        <div class="container">
+            <h3 class="mt-2 mb-3">Найдено записей - {{ filter.qs.count }}</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <a href="?{% url_replace request 'ordering' 'last_name' %}"><i class="fas fa-sort-amount-up-alt"></i></a>
+                        <a href="?{% url_replace request 'ordering' '-last_name' %}"><i class="fas fa-sort-amount-up"></i></a>
+                        Фамилия Имя Отчество</th>
+                    <th scope="col">
+                        <a href="?{% url_replace request 'ordering' 'date_of_birth' %}"><i class="fas fa-sort-amount-up-alt"></i></a>
+                        <a href="?{% url_replace request 'ordering' '-date_of_birth' %}"><i class="fas fa-sort-amount-up"></i></a>
+                        Дата рождения</th>
+                    <th scope="col">Дата и время записи</th>
+                    <th scope="col">Забронировано <input class="form-check-input is_booked_all_checkbox" type="checkbox"
+                                                         value="" id="is_booked_all_checkbox_id"></th>
+                    <th scope="col">Комментарий к записи</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in appointment_list %}
+                    <tr>
+                        <th scope="row">
+                            <input type="text" class="form-control no_border_input" id="id_last_name_{{ item.id }}" value="{{ item.last_name|default_if_none:"Нет данных" }}">
+                        </th>
+                        <td>
+                            <input type="date" class="form-control no_border_input" id="id_date_of_birth_{{ item.id }}" value="{{ item.date_of_birth }}">
+                        </td>
+                        {#                        <td>{{ item.email|default_if_none:"Нет данных" }}</td>#}
+                        <td>{{ item.date_appointment }} {{ item.time_appointment }}</td>
+                        <td>
+                            {% if item.is_booked %}
+                                <input class="form-check-input is_booked_checkbox may_be_disabled" type="checkbox"
+                                       value="{{ item.id }}" checked>
+                                <nobr>{{ item.date_of_write }}</nobr>
+                            {% else %}
+                                <input class="form-check-input is_booked_checkbox may_be_disabled" type="checkbox"
+                                       value="{{ item.id }}">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <input type="text" class="form-control no_border_input" id="id_comment_{{ item.id }}" value="{{ item.comment|default_if_none:"Нет данных" }}">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary mb-4 may_be_disabled" id="save_button">Сохранить</button>
+            {% csrf_token %}
+
+        </div>
+
+    {% else %}
+        <p style="margin-left: 12px;">Список пуст!</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block own_js %}
+    <script src="{% static 'dashboard/js/dashboard_main.js' %}"></script>
+{% endblock %}

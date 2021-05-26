@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Создание новой очереди</title>
+{% endblock %}
+{% block own_css %}
+{% endblock %}
+
+{% block content %}
+    {% include 'dashboard/nav.html' %}
+    <br>
+    <div class="container">
+        <form action="{% url 'dashboard:queue_create' %}" method="POST">{% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Дата начала работы очереди</label>
+                        <input type="date" class="form-control" name="date_from" value="{% now "Y-m-d" %}" min="{% now "Y-m-d" %}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">Дата окончания работы очереди</label>
+                        <input type="date" class="form-control" name="date_till" value="{% now "Y-m-d" %}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Рабочий день с (часов)</label>
+                        <select class="form-select" name="work_day_from" required>
+                            <option value="8" selected>8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Рабочий день по (часов)</label>
+                        <select class="form-select" name="work_day_till" required>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19" selected>19</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Временной интервал (минут)</label>
+                        <select class="form-select" name="time_interval" required>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20" selected>20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Создать очередь</button>
+        </form>
+
+    </div>
+
+{% endblock %}
+
+{% block own_js %}
+{% endblock %}

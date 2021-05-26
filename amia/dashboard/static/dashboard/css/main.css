@@ -1,0 +1,8 @@
+th, td {
+    vertical-align: middle;
+}
+
+.no_border_input {
+    border: 0;
+    outline: 0;
+}
