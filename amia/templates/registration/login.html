@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Вход в систему</title>
+{% endblock %}
+{% block own_css %}
+    <link href="{% static 'appointment/css/bootstrap/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <main class="form-signin">
+        <form method="post">{% csrf_token %}
+            <div class="text-center"><img class="mb-4" src="{% static 'appointment/img/favicon.ico' %}" alt="" width="72" height="57"></div>
+            <h1 class="h3 mb-3 fw-normal">Войдите в систему</h1>
+
+            <div class="form-floating">
+                <input type="text" name="username" class="form-control" placeholder="Логин" required autofocus>
+                <label for="floatingInput">Логин</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+                <label for="floatingPassword">Пароль</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+            <p class="mt-5 mb-3 text-muted">&copy; Разработано ООИТ</p>
+        </form>
+    </main>
+
+{% endblock %}
+
+{% block own_js %}
+    <script src="{% static 'appointment/js/main.js' %}"></script>
+{% endblock %}

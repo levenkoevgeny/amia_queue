@@ -6,6 +6,6 @@ from django.contrib.auth.decorators import login_required
 app_name = 'dashboard'
 
 urlpatterns = [
-    path('', views.dashboard_main, name='main'),
-    path('queue_create/', views.dashboard_queue_create, name='queue_create'),
+    path('', login_required(views.dashboard_main), name='main'),
+    path('queue_create/', login_required(views.dashboard_queue_create), name='queue_create'),
 ]
