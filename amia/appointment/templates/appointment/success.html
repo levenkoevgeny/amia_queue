@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Подтверждение записи</title>
+{% endblock %}
+{% block own_css %}
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!--[if !IE]> -->
+
+    <div class="container py-4">
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Уважаемый абитуриент!!!</h1>
+                <p class="col-md-12 fs-4" style="text-indent: 1.5em; text-align: justify;">Для подтверждения регистрации и получения пропуска(-ов) на прохождение централизованного тестирования приглашаем Вас после оплаты регистрационного взноса ЛИЧНО явиться {{ date_appointment }} к {{ time }} в пункт регистрации на централизованное тестирование учреждения образования «Академия Министерства внутренних
+                    дел Республики Беларусь», расположенный по адресу: г. Минск, пр-т Машерова, 6, ауд. 101А (вход с транспортного КПП).</p>
+                 <p class="col-md-12 fs-4" style="text-indent: 1.5em; text-align: justify;">При себе необходимо иметь:</p>
+                 <p class="col-md-12 fs-4" style="text-indent: 1.5em; text-align: justify;">- документ, удостоверяющий личность;</p>
+                 <p class="col-md-12 fs-4" style="text-indent: 1.5em; text-align: justify;">- документы, подтверждающие право на льготу (при наличии) и их копии.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <![endif]--><!--[if IE]>Ваш браузер не поддерживается<![endif]-->
+{% endblock %}
+
+{% block own_js %}{% endblock %}

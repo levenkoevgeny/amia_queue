@@ -15,6 +15,6 @@ class Appointment(models.Model):
         return str(self.date_appointment) + ' ' + str(self.time_appointment) + ' ' + str(self.last_name)
 
     class Meta:
-        ordering = ('-date_appointment',)
+        ordering = ('pk',)
         verbose_name = 'Запись на тестирование'
         verbose_name_plural = 'Записи на тестирование'

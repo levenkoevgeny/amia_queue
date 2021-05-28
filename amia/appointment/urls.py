@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
-from django.contrib.auth.decorators import login_required
 
 
 app_name = 'appointment'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('get-free-intervals/', views.get_free_intervals, name='get_free_intervals'),
+    path('add_appointment/', views.add_appointment, name='add_appointment'),
+    path('<appointment_id>/success/', views.success, name='success'),
 ]

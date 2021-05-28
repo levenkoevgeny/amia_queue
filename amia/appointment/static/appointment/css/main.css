@@ -1,3 +1,160 @@
-.date_picker_item {
-    width: 44px;
+:root{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: calc(1vmin + 10px);
+	color: #fff;
+	margin: 0;
+	padding:0;
 }
+
+.date_picker_item {
+    width: calc(5.5vmin + 0.5rem);
+	height: calc(5.5vmin + 0.5rem);
+	margin: 0.3em;
+	font-size: calc(0.5rem + 1.5vmin);
+	padding: 0;
+	color: #fff;
+}
+
+.btn.date_picker_day {
+	color: #fff;
+}
+
+.nav-link-my {
+  display: block;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-link-my {
+    transition: none;
+  }
+}
+.nav-link-my.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: default;
+}
+
+.alert-my {
+  position: relative;
+  padding: 1rem 1rem;
+  margin: 0 auto 1em auto;
+  border: 1px solid transparent;
+  width: 100vmin;
+}
+
+.alert-primary-my {
+  color: white;
+  text-align: center;
+}
+
+.btn-primary-my {
+  color: #343a40;
+  background-color: #fff;
+  border: 1px solid #343a40;
+  margin: 2vmin 10vmin;
+  padding: 0.2em 1em;
+  border-radius: 0.5em;
+}  
+
+
+.btn-primary-my:hover {
+  color: #fff;
+  background-color: #343a40;
+  border: 1px solid #343a40;
+}
+.btn:hover{
+	background-color: inherit;
+}
+
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #909294;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #909294;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(77, 82, 86, 0.25);
+}
+
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  border-radius: 50%;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-outline-primary {
+  color: #fff;
+}
+.btn-outline-primary:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+}
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.logo-img {
+			width: 2em;
+			height: 2em;
+			margin-right: 20px;
+}
+
+.month-name{
+	color: #fff;
+	font-weight: normal;
+}
+
+.main-center {
+	width: 100vmin; 
+	min-width: 260px; 
+	margin: 0 auto;
+padding: 0;	
+	font-size: calc(0.5rem + 2vmin); 
+	background: linear-gradient(90deg, #0a0d10, #1f2429, #373a3e, #696b6d, #a5a6a7);
+}
+
+.form-label {
+  color: #fff;
+}
+
+
+
+

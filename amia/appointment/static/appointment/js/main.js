@@ -40,7 +40,7 @@ $(document).ready(function () {
         let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
         $.ajax({
-            url: `http://localhost:8000/rest/appointments/?date_appointment=${picker_date}&is_booked=False&time_appointment=${time}`,
+            url: `/rest/appointments/?date_appointment=${picker_date}&is_booked=False&time_appointment=${time}`,
             type: "GET",
             dataType: 'json',
             data: search,
@@ -62,11 +62,12 @@ $(document).ready(function () {
     function display_intervals(dataJSON) {
         let elem = $('#div_for_intervals');
         elem.html('');
+        $('#id_time_interval').attr('value', '');
 
         if (dataJSON.length) {
             elem.append("<b>Свободное время для записи:</b><br>");
             for (var i = 0; i < dataJSON.length; i++) {
-                var new_button = $('<button type="button" class="btn btn-secondary m-2 interval_button" value="' + dataJSON[i].pk + '">' + dataJSON[i].time_appointment + '</button>');
+                var new_button = $('<button type="button" class="btn btn-secondary m-2 interval_button" value="' + dataJSON[i].id + '">' + dataJSON[i].time_appointment + '</button>');
                 elem.append(new_button);
             }
         } else {
@@ -81,7 +82,7 @@ $(document).ready(function () {
     }
 
     $("body").on("click", ".interval_button", function (e) {
-        var elem = $(this);
+        let elem = $(this);
         $(".interval_button").each(function () {
             $(this).removeClass("btn-success");
             $(this).addClass("btn-secondary");
@@ -89,9 +90,7 @@ $(document).ready(function () {
         elem.removeClass("btn-secondary");
         elem.addClass("btn-success");
 
-        var pk = this.getAttribute("value");
-
-        $('#id_appointment').attr('value', pk);
+        $('#id_time_interval').attr('value', this.getAttribute("value"));
     });
 
 

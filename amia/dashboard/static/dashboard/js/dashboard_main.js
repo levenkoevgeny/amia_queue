@@ -25,7 +25,7 @@ $(document).ready(function () {
             let last_name = $(`#id_last_name_${$(this).val()}`).val();
             let date_of_birth = $(`#id_date_of_birth_${$(this).val()}`).val();
             let comment = $(`#id_comment_${$(this).val()}`).val();
-            const request = fetch(`http://localhost:8000/rest/appointments/${$(this).val()}/`, {
+            const request = fetch(`/rest/appointments/${$(this).val()}/`, {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -40,7 +40,8 @@ $(document).ready(function () {
         (async () => {
             Promise.all(requests)
                 .then(() => document.location.reload())
-                .catch(() => alert('Ошибка сохранения!!'));
+                .catch((e) => console.log('Ошибка сохранения!!!', e))
+                .finally(() => document.location.reload());
         })();
     });
 

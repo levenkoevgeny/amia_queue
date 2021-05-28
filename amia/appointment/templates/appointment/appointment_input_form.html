@@ -1,17 +1,33 @@
-<form>
-    <div class="mb-3">
-        <label class="form-label">ФИО</label>
-        <input type="text" class="form-control can_be_disabled">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Дата рождения</label>
-        <input type="text" class="form-control can_be_disabled">
-    </div>
-{#    <div class="mb-3">#}
-{#        <label class="form-label">Email</label>#}
-{#        <input type="email" class="form-control can_be_disabled">#}
-{#        <small>На данный адресс придет уведомление об успешной записи</small>#}
-{#    </div>#}
+<form action="{% url 'appointment:add_appointment' %}" method="post" class="needs-validation" novalidate>{% csrf_token %}
+    <div class="row g-3">
+        <div class="col-12">
+            <input type="text" class="form-control" style="height: 5px; opacity: 0;" id="id_time_interval" name="time_interval" required>
+            <div class="invalid-feedback">
+                Выберите дату и время записи
+            </div>
+        </div>
+        <div class="col-12" style="width: calc(60vmin + 40px); margin: 0 auto;">
+            <label class="form-label">ФИО</label>
+            <input type="text" class="form-control can_be_disabled" name="last_name" value="{{ last_name }}" required>
+            <div class="invalid-feedback">
+                Поле является обязательным
+            </div>
+        </div>
+        <div class="col-12" style="width: calc(60vmin + 40px); margin: 0 auto;">
+            <label class="form-label">Дата рождения</label>
+            <input type="text" class="form-control can_be_disabled" name="date_of_birth" value="{{ date_of_birth }}" required>
+            <div class="invalid-feedback">
+                Поле является обязательным
+            </div>
+        </div>
 
-    <button type="submit" class="btn btn-primary can_be_disabled">Рарегистрироваться</button>
+        <div class="col-12" style="width: 60vmin; margin: 0 auto;">
+            <label class="form-label">Комментарий к записи</label>
+            <textarea class="form-control can_be_disabled" name="comment" rows="3">{{ comment }}</textarea>
+        </div>
+        <input type="hidden" id="id_month" name="month" value="{{ month }}">
+        <div class="col-12 mb-3">
+            <button type="submit" class="btn-my btn-primary-my can_be_disabled">Зарегистрироваться</button>
+        </div>
+    </div>
 </form>
