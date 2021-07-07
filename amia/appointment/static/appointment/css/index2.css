@@ -1,0 +1,12 @@
+.main-div {
+    width: 65%;
+    margin: auto;
+}
+
+
+@media (max-width: 768px)
+{
+    .main-div {
+        width: 80%;
+    }
+}

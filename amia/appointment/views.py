@@ -18,7 +18,7 @@ def index(request):
 
     date_picker_html = get_date_picker_html(year, month)
 
-    return render(request, 'appointment/index.html',
+    return render(request, 'appointment/index2.html',
                   {'dates': date_picker_html,
                    'month': month,
                    'month_prev': month-1,
